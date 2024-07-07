@@ -1,0 +1,43 @@
+// we can simply find by INT_MIN and INT_MAX. In this we have to add limits.h header file .
+//BY using simply if else 
+
+// 1 st method
+#include<iostream>
+#include<limits.h>
+using namespace std;
+int main(){
+int arr[]={1,2,3,4,5};
+int n = 5;
+int min = INT_MAX;
+int max = INT_MIN;
+for (int i = 0; i<n ;i++){
+    if(arr[i]<min){
+        min = arr[i];
+        }
+    if(arr[i]>max){
+      max = arr[i];
+     }
+}
+cout<<min<<" " <<max;
+}
+//2 nd method
+
+#include<iostream>
+using namespace std;
+int main(){
+int arr[]={1,2,3,4,5};
+int n = 5;
+    int max = 0;
+    int min = 0;
+    for(int i = 0;i<n ;i++){
+    if(arr[i]>max){
+      max = arr[i];
+    } 
+    if(arr[i]<min){
+      min = arr[i];
+    }
+} 
+cout<<min<<" "<<max;
+}
+
+
