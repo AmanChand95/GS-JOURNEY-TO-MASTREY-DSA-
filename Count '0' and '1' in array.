@@ -1,0 +1,39 @@
+As you know we have to count 0 and 1 in array . Print them .
+// for this we can use hashing and count .
+// 1 st method 
+#include<iostream>
+using namespace std;
+int main(){
+   int arr[]={0,1,0,0,1,1};
+    int n =6;
+    int hash[6]={0};
+    for(int i =0;i<n;i++){
+      hash[arr[i]]++;  
+    }
+  cout<<hash[0]<<"  "<<hash[1]<<"   "<<hash[5]<<endl;
+}
+// 2 nd method 
+
+#include<iostream>
+using namespace std;
+int main(){
+    int arr[]={0,1,0,0,1,1};
+    int n =6;
+    int i =0;
+    int count0 =0;
+    int count1 =0;
+    while(i<n){
+        if(arr[i]==0){
+            count0++;
+        }
+        if(arr[i]==1){
+            count1++;
+        }
+      i++;
+  }
+cout<<count0<<"  "<<count1;
+}
+
+
+
+
