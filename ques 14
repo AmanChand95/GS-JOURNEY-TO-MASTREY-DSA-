@@ -1,0 +1,37 @@
+#include <iostream>
+using namespace std;
+
+void sum(int arr[3][3], int row, int col) {
+    int sump = 0;
+    int sums = 0;
+    
+    cout << "Primary diagonal elements: ";
+    for (int i = 0; i < row; i++) {
+        cout << arr[i][i] << " ";
+        sump += arr[i][i];
+    }
+    cout << endl;
+    
+    cout << "Secondary diagonal elements: ";
+    for (int i = 0; i < row; i++) {
+        cout << arr[i][row - 1 - i] << " ";
+        sums += arr[i][row - 1 - i];
+    }
+    cout << endl;
+    
+    cout << "Sum of primary diagonal: " << sump << endl;
+    cout << "Sum of secondary diagonal: " << sums << endl;
+}
+
+int main() {
+    int arr[3][3] = {
+        {1, 2, 3},
+        {5, 6, 7},
+        {9, 10, 11}
+    };
+    int row = 3;
+    int col = 3;
+    
+    sum(arr, row, col);
+
+}
