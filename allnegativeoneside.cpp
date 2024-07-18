@@ -1,0 +1,39 @@
+#include<iostream>
+using namespace std;
+void allnegativeoneside(int arr[], int n) {
+    int j = 0; // Pointer for the position to place the next negative number Traverse the array
+    for (int i = 0; i < n; i++) {
+        if (arr[i] < 0) {
+            if (i != j) {     // why this condition because if assume -3 is ar i =0 place then it is in correct position so need to swap .
+                swap(arr[i], arr[j]);
+            }
+            j++;
+        }
+    }
+    // int i =0;
+    // int j = n-1;
+    //     while (i<=j){
+    //     if(arr[i]<0){
+    //        i++;
+    //        }
+    //     else if(arr[j]>=0){
+    //     j--;
+    //     }
+    //     else{
+    //         swap(arr[i],arr[j]);
+    //     }
+    // }
+    for (int i = 0; i < n; i++) {
+        cout << arr[i] << " ";
+     }
+    
+}
+
+int main() {
+    int arr[] = {2, -3, -4, 10, 5, -1};
+    int n = sizeof(arr) / sizeof(arr[0]);
+    allnegativeoneside(arr, n);
+    return 0;
+}
+//time complexity = o(n)
+//space complexity =o(1)
