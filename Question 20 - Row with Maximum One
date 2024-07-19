@@ -1,0 +1,28 @@
+ Approach: Iterate through the matrix, counting ones in each row and tracking the maximum.
+ Time Complexity: O(m * n), where m is the number of rows and n is the no. of the column.
+ Space Complexity: O(1), using only a few variables.
+
+class Solution {
+public:
+    vector<int> rowAndMaximumOnes(vector<vector<int>>& mat) {
+        int countone = 0;
+        int maxone = 0;
+        int maxrow = 0;
+        int row = mat.size();
+        int col = mat[0].size();
+        for(int i = 0; i < row; i++){
+            countone = 0;
+            for(int j = 0; j < col; j++){
+                if(mat[i][j] == 1){
+                    countone++;
+                }
+            }
+            if(countone > maxone){
+                maxone = countone;
+                maxrow = i;
+            }
+        }
+        return {maxrow, maxone};
+    }
+};
+
