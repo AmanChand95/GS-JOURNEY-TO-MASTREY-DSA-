@@ -1,0 +1,35 @@
+#include <vector>
+using namespace std;
+
+class Solution {
+public:
+    vector<int> rearrangeArray(vector<int>& arr) {
+        int n = arr.size();
+        vector<int> ans(n, 0); 
+
+        int positiveindex = 0;
+        int negativeindex = 1;
+
+        for (int i = 0; i < n; i++) {
+            if (arr[i] < 0) {
+                ans[negativeindex] = arr[i];
+                negativeindex += 2;
+            } else {
+                ans[positiveindex] = arr[i];
+                positiveindex += 2;
+            }
+        }
+
+        return ans;
+    }
+};
+
+Create a new array of the same size as the input.
+Use two pointers: one for positive numbers (even indices) and one for negative numbers (odd indices).
+Iterate through the original array, placing positive numbers at even indices and negative numbers at odd indices in the new array.
+
+Time Complexity: O(n), where n is the size of the array.
+The algorithm iterates through the array once.
+
+Space Complexity: O(n)
+An additional array of the same size as the input is used to store the rearranged elements
