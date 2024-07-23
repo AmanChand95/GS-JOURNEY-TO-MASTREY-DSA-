@@ -1,0 +1,61 @@
+key pair / two sum leetcode -1
+Approach: Create a vector of pairs (number, index) . Sort this vector based on the numbers. Use two pointers to find the pair that sums to the target
+Time Complexity: O(n log n) due to sorting
+Space Complexity: O(n) for the vector of pairs.
+
+Approach:
+Use nested loops to check all pairs of numbers
+Time Complexity: O(n^2) Space Complexity: O(1)
+
+//1 st method
+
+class Solution {
+public:
+    vector<int> twoSum(vector<int>& nums, int target) {
+        int n = nums.size();
+        vector<pair<int, int>> numWithIndex;
+        
+        for (int i = 0; i < n; i++) {
+            numWithIndex.push_back({nums[i], i});
+        }
+
+        sort(numWithIndex.begin(), numWithIndex.end());
+        
+        int low = 0;
+        int high = n - 1;
+        
+        while (low < high) {
+            int sum = numWithIndex[low].first + numWithIndex[high].first;
+            if (sum == target) {
+  
+                return {numWithIndex[low].second, numWithIndex[high].second};
+            } else if (sum > target) {
+                high--;
+            } else {
+                low++;
+            }
+        }
+        
+        return {}; // No solution found
+    }
+};
+
+//2nd method
+int main() {
+    int arr[] = {2, 7, 5, 11, 8};
+    int n = 5;
+    int target = 9;
+
+    for (int i = 0; i < n; i++) {
+        for (int j = i + 1; j < n; j++) {  // Changed 'i' to 'j' in the condition
+            if (arr[i] + arr[j] == target) {
+                cout << i << " " << j << endl;
+                cout << arr[i] << " " << arr[j] << endl;
+                return 0;  // Added to stop after finding the first pair
+            }
+        }
+    }
+
+    cout << "No solution found" << endl;
+    return 0;
+}
