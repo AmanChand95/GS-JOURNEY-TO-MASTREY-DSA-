@@ -1,0 +1,90 @@
+1 st method
+Approach:
+Use the first row and column as markers
+Use a separate variable for the first column
+Set markers in the first pass
+Use markers to set zeroes in the second pass
+
+Time Complexity: O(m * n)
+Space Complexity: O(1)
+
+2nd method
+Approach:
+
+Use separate arrays to mark rows and columns to be zeroed
+Set markers in the first pass
+Use markers to set zeroes in the second pass
+
+Time Complexity: O(m * n)
+Space Complexity: O(m + n
+
+
+class Solution {
+public:
+    void setZeroes(vector<vector<int>>& matrix) {
+        int n = matrix.size();
+        int m = matrix[0].size();
+        bool col0 = false;
+
+        for (int i = 0; i < n; i++) {
+            if (matrix[i][0] == 0) col0 = true;
+            for (int j = 1; j < m; j++) {
+                if (matrix[i][j] == 0) {
+                    matrix[i][0] = 0;
+                    matrix[0][j] = 0;
+                }
+            }
+        }
+
+        for (int i = 1; i < n; i++) {
+            for (int j = 1; j < m; j++) {
+                if (matrix[i][0] == 0 || matrix[0][j] == 0) {
+                    matrix[i][j] = 0;
+                }
+            }
+        }
+        if (matrix[0][0] == 0) {
+            for (int j = 0; j < m; j++) {
+                matrix[0][j] = 0;
+            }
+        }
+        if (col0) {
+            for (int i = 0; i < n; i++) {
+                matrix[i][0] = 0;
+            }
+        }
+    }
+};
+
+#include<iostream>
+using namespace std;
+
+int main(){
+    int arr[3][3] =  {{1, 0, 1}, {1, 0, 1}, {1, 1, 1}};
+    int m= 3 ; 
+    int n = 3;
+    int row [m] ={0};
+    int col[n]={0};
+     for(int i = 0; i<m; i++){
+        for(int j = 0 ; j<n ; j++){
+        if ( arr[i][j]==0){
+             row[i]=-1;
+             col[j]=-1;
+            }
+         }
+    }
+
+    for(int i = 0 ; i<m ; i++){
+        for(int j = 0; j<n ;j++){
+            if(row[i]==-1 || col [j]==-1){
+                arr[i][j]=0;
+            }
+        }
+    }
+    for(int i = 0 ; i<m ; i++){
+        for(int j = 0; j<n ;j++){
+         cout << arr[i][j];
+        }
+        cout<<endl;
+    }
+}
