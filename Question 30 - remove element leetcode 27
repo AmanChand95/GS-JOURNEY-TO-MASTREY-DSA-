@@ -1,0 +1,22 @@
+Approach:
+Use two pointers: one (k) to keep track of the position to place the next element that's not equal to val, and another (i) to iterate through the array
+If the current element is not equal to val, place it at position k and increment k
+
+Time Complexity: O(n), where n is the length of the array. The array is traversed once
+Space Complexity: O(1)
+
+#include <vector>
+
+int removeElement(std::vector<int>& nums, int val) {
+    int k = 0;
+    // Iterate through each element in the array
+    for (int i = 0; i < nums.size(); ++i) {
+        if (nums[i] != val) {
+            // If the current element is not equal to val, place it in the k-th position
+            nums[k] = nums[i];
+            k++; 
+        }
+    }
+    
+    return k; 
+}
