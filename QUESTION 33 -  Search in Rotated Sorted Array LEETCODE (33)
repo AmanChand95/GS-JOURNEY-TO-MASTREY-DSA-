@@ -1,0 +1,41 @@
+Approach
+Use binary search to efficiently find the target in a rotated sorted array.
+The algorithm repeatedly divides the search interval in half, checking whether the target is in the left or right half of the array based on the sorted properties of the segments.
+Time Complexity
+O(log n): The search space is halved with each iteration, leading to logarithmic time complexity.
+Space Complexity
+O(1): The algorithm uses a constant amount of space for variables, regardless of the input size
+
+class Solution {
+public:
+    int search(vector<int>& nums, int target) {
+        int start = 0;
+        int end = nums.size() - 1;
+
+        while (start <= end) {
+            int mid = start + (end - start) / 2;
+
+            if (nums[mid] == target) {
+                return mid;
+            }
+
+            if (nums[start] <= nums[mid]) {
+                if (target >= nums[start] && target < nums[mid]) {
+                    end = mid - 1;
+                } else {
+                    start = mid + 1;
+                }
+            }
+
+            else {
+                if (target > nums[mid] && target <= nums[end]) {
+                    start = mid + 1;
+                } else {
+                    end = mid - 1;
+                }
+            }
+        }
+
+        return -1;
+    }
+};
