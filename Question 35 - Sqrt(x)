@@ -1,0 +1,26 @@
+class Solution {
+public:
+    int mySqrt(int x) {
+        int s = 0;
+        int e = x;
+        while (s <= e) {
+            long long mid = s + (e - s) / 2;
+            long long val = mid * mid;
+            if (val == x) {
+                return mid;
+            } else if (val < x) {
+                s = mid + 1;
+            } else {
+                e = mid - 1;
+            }
+        }
+        return e;
+    }
+};
+
+Sqrt(x) leetcode :-69
+Approach:
+Use binary search to efficiently find the square root
+Search in the range from 0 to x
+Time Complexity: O(log x)
+Space Complexity: O(1)
