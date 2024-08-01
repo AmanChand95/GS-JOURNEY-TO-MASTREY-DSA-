@@ -1,0 +1,36 @@
+Search in 2d matrix (leetcode 74)
+Approach:
+Treat the 2D matrix as a flattened 1D sorted array. Use binary search on this conceptual 1D array. main point is if you know how to calculate row index and colindex you can solve it .
+Time Complexity: O(log(m*n)), where m is the number of rows and n is the number of columns
+Space Complexity: O(1)
+
+class Solution {
+public:
+    bool searchMatrix(vector<vector<int>>& arr, int target) {
+      int row = arr.size();
+    int col = arr[0].size();
+
+    int n = row * col;
+    int start = 0;
+    int end = n - 1;
+
+    while (start <= end) {
+        int mid = start + (end - start) / 2;
+       int  rowIndex = mid / col;
+       int  colIndex = mid % col;
+        int currNumber = arr[rowIndex][colIndex];
+
+        if (target == currNumber) {
+            return true;
+        }
+        if (target < currNumber) {
+            end = mid - 1;
+        } else {
+            start = mid + 1;
+        }
+    }
+
+    return false;
+
+    }
+};
