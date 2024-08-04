@@ -1,0 +1,27 @@
+class Solution {
+public:
+    int singleNonDuplicate(vector<int>& arr) {
+        int n = arr.size();
+        if (n == 1) return arr[0];
+        if (arr[0] != arr[1]) return arr[0];
+        if (arr[n-1] != arr[n-2]) return arr[n-1];
+
+        int low = 1, high = n - 2;
+        while (low <= high) {
+            int mid = (low + high) / 2;
+
+            if (mid % 2 == 1) mid--;
+
+            if (arr[mid] == arr[mid + 1]) {
+                low = mid + 2;
+            } else {
+                high = mid - 1;
+            }
+        }
+        return arr[low];
+    }
+};
+Approach:
+Use binary search, leveraging the property that the single element disrupts the paired structure of the array. Check edge cases first. Adjust the mid index to always be even. Use the pairing property to determine which half to search
+Time Complexity: O(log n)
+Space Complexity: O(1)
