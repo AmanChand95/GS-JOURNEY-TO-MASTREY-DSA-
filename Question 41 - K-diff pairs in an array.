@@ -1,0 +1,36 @@
+class Solution {
+public:
+    int findPairs(std::vector<int>& nums, int k) {
+          unordered_map<int, int> numCount;
+        int count = 0; 
+
+        for (int num : nums) {
+            numCount[num]++;
+        }
+
+        for (const auto& pair : numCount) {
+            int num = pair.first;
+            int frequency = pair.second;
+
+            if (k == 0) {
+         
+                if (frequency >= 2) {
+                    count++;
+                }
+            } else {
+               
+                if (numCount.count(num + k)) {
+                    count++;
+                }
+            }
+        }
+
+        return count;
+    }
+};
+
+Approach: Use a hash map to count occurrences of numbers and check for pairs based on the value of k.
+
+Time Complexity: O(n)
+
+Space Complexity: O(n)
