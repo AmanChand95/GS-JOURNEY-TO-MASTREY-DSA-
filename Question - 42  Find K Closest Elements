@@ -1,0 +1,57 @@
+class Solution {
+public:
+    vector<int> findClosestElements(vector<int>& arr, int k, int x) {
+        return bs_method(arr, k, x);
+    }
+
+private:
+    int lowerBound(vector<int>& arr, int x) {
+        int start = 0, end = arr.size() - 1;
+        int ans = end;
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            if (arr[mid] >= x) {
+                ans = mid;
+                end = mid - 1;
+            } else {
+                start = mid + 1;
+            }
+        }
+        return ans;
+    }
+
+    vector<int> bs_method(vector<int>& arr, int k, int x) {
+   
+        int h = lowerBound(arr, x);
+        int l = h - 1;
+        while (k--) {
+            if (l < 0) {
+                h++;
+            } else if (h >= arr.size()) {
+                l--;
+            } else if (x - arr[l] > arr[h] - x) {
+                h++;
+            } else {
+                l--;
+            }
+        }
+        return vector<int>(arr.begin() + l + 1, arr.begin() + h);
+    }
+};
+
+Approach:
+Use binary search to find the lower bound of x in the array
+Use two pointers to expand around this point and find the k closest elements
+Implementation Details:
+a) lowerBound function:
+Implements binary search to find the index of the first element >= x
+Returns the index of the lower bound
+b) bs_method function:
+Finds the lower bound of x using lowerBound
+Initializes two pointers: 'l' (left) and 'h' (high)
+Expands the window between l and h to include k elements
+Compares the difference between x and elements on both sides to decide which direction to expand
+
+Time Complexity: O(log n + k), where n is the size of the array
+O(log n) for binary search
+O(k) for finding k closest elements
