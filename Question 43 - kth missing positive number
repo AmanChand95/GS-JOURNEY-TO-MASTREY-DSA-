@@ -1,0 +1,20 @@
+class Solution {
+public:
+    int findKthPositive(vector<int>& arr, int k) {
+        int s = 0, e = arr.size();
+        while (s < e) {
+            int mid = s + (e - s) / 2;
+            if (arr[mid] - mid - 1 < k) {
+                s = mid + 1;
+            } else {
+                e = mid;
+            }
+        }
+        return s + k;
+    }
+};
+
+Approach:
+Use binary search to find the index where the number of missing positive integers up to that index is less than k. The kth missing positive integer will be s + k, where s is the final value of the start pointer.
+Time Complexity: O(log n), where n is the size of the array
+Space Complexity: O(1)
