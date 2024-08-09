@@ -1,0 +1,33 @@
+int sumByD(vector<int> &arr, int div) {
+    int n = arr.size(); 
+    int sum = 0;
+    for (int i = 0; i < n; i++) {
+        sum += ceil((double)(arr[i]) / (double)(div));
+    }
+    return sum;
+}
+
+int smallestDivisor(vector<int>& arr, int limit) {
+    int low = 1, high = *max_element(arr.begin(), arr.end());
+    while (low <= high) {
+        int mid = (low + high) / 2;
+        if (sumByD(arr, mid) <= limit) {
+            high = mid - 1;
+        } else {
+            low = mid + 1;
+        }
+    }
+    return low;
+}
+
+class Solution {
+public:
+    int smallestDivisor(vector<int>& nums, int threshold) {
+        return ::smallestDivisor(nums, threshold);
+    }
+};
+
+Approach:
+Use binary search to find the smallest divisor that satisfies the condition. Define a helper function (sumByD) to calculate the sum of divided and rounded-up elements.
+ Time Complexity: O(nlog(max(arr))), where n is the size of the array 
+ Space Complexity: O(1) .
