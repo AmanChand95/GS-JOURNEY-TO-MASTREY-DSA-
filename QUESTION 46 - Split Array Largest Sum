@@ -1,0 +1,40 @@
+class Solution {
+public:
+    int countPartitions(vector<int> &a, int maxSum) {
+        int n = a.size();
+        int partitions = 1;
+        long long subarraySum = 0;
+        
+        for (int i = 0; i < n; i++) {
+            if (subarraySum + a[i] <= maxSum) {
+                subarraySum += a[i];
+            } else {
+                partitions++;
+                subarraySum = a[i];
+            }
+        }
+        return partitions;
+    }
+
+    int splitArray(vector<int>& nums, int k) {
+        int start = *max_element(nums.begin(), nums.end());
+        int end = accumulate(nums.begin(), nums.end(), 0);
+        
+        while (start <= end) {
+            int mid = (start + end) / 2;
+            int partitions = countPartitions(nums, mid);
+            
+            if (partitions > k) {
+                start = mid + 1;
+            } else {
+                end = mid - 1;
+            }
+        }
+        return start;
+    }
+};
+
+Approach
+Binary Search: Search between start (max element in nums) and end (sum of all elements). Use mid as a potential maximum sum for subarrays. Count Partitions: Count how many partitions can be formed without exceeding mid. If partitions > k, increase mid; otherwise, decrease it.
+Time Complexity O(nlog(sum of elements))
+Space Complexity O(1)
