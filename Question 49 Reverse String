@@ -1,0 +1,19 @@
+class Solution {
+public:
+    void reverseString(vector<char>& s) {
+      int n = s.size();
+      int leftp = 0;
+      int rightp = n-1;
+      for(int i =0; i<n/2 ;i++){
+        swap(s[leftp],s[rightp]);
+        leftp++;
+        rightp--;
+      }
+    }
+};
+
+Approach:
+Use two pointers, one at the start and one at the end of the string. Swap characters at these pointers and move them towards the centre. Continue until the pointers meet in the middle.
+
+Time Complexity: O(n)
+Space Complexity: O(1)
