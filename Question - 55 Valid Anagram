@@ -1,0 +1,27 @@
+class Solution {
+public:
+    bool isAnagram(string s, string t) {
+        if (s.size() != t.size())
+            return false;
+
+        vector<int> h(26);
+        for (int i = 0; i < s.size(); i++)
+            h[s[i] - 'a']++;
+
+        for (int i = 0; i < t.size(); i++) {
+            int x = --h[t[i] - 'a'];
+            if (x < 0)
+                return false;
+        }
+
+        return true;
+    }
+};
+Approach:
+
+Check if the lengths of s and t are different, if so, they cannot be anagrams. Use a frequency array h of size 26 to store the count of each character in s.
+Iterate through t and decrement the count of each character in h. If the count becomes negative, it means the characters in t are not present in s, so return false.
+If the loop completes without returning false, it means the characters in s and t are the same, so return true.
+
+Time complexity: O(n)
+Space complexity: O(1)
