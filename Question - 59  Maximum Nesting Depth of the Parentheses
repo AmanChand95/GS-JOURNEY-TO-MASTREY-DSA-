@@ -1,0 +1,23 @@
+class Solution {
+public:
+    int maxDepth(string s) {
+        int depth = 0, ans = 0;
+        for (int i = 0; i < s.size(); i++) {
+            if (s[i] == '(') {
+                depth++;
+                ans = max(depth, ans);
+            } else if (s[i] == ')') {
+                depth--;
+            }
+        }
+        return ans;
+    }
+};
+
+Approach:
+Iterate through the string once
+Increment depth for '(', decrement for ')'
+Track maximum depth seen so far
+
+Time complexity: O(n)
+Space complexity: O(1)
