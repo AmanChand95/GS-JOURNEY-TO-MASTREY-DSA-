@@ -1,0 +1,33 @@
+class Solution {
+public:
+int beautySum(string s) {
+    int n = s.size();
+    int ans = 0;
+    for (int i = 0; i < n; i++) {
+        int count[26] = {0};
+        for (int j = i; j < n; j++) {
+            int mx = INT_MIN, mn = INT_MAX;
+            count[s[j] - 'a']++;
+            for (auto x : count) {
+                if (x != 0) {
+                    mn = min(x, mn);
+                    mx = max(x, mx);
+                }
+            }
+            ans += mx - mn;
+        }
+    }
+    return ans;
+}
+};
+
+Approach:
+
+Generate all substrings using two nested loops
+For each substring:
+Count frequency of each character
+Find max and min frequencies of non-zero counts
+Add difference (max - min) to total beauty sum
+
+Time complexity: O(n³)
+Space complexity: O(1)
