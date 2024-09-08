@@ -1,0 +1,32 @@
+#include<iostream>
+using namespace std;
+
+int main(){
+    int num[5] = {10,20,30,40,50};
+
+    int *arr[5];
+
+    arr[0] = &num[0];
+    arr[1] = &num[1];
+    arr[2] = &num[2];
+    arr[3] = &num[3];
+    arr[4] = &num[4];
+
+    cout<< num << endl;
+    cout<< &num << endl;
+    cout<< *num << endl;
+    cout<< &num[0] << endl;
+
+    cout<< arr << endl;
+    cout<< &arr << endl;
+    cout<< *arr << endl;
+    cout<< &arr[0] << endl;
+
+    cout<< *arr[0] << endl;
+    cout<< *arr[1] << endl;
+    cout<< *arr[2] + 1 << endl;
+    cout<< arr[3] << endl;
+    cout<< *(arr[0] + 1) << endl;
+
+    return 0;
+}
