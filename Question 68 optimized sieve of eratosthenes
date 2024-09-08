@@ -1,0 +1,31 @@
+#include<iostream>
+#include<vector>
+#include <cmath>
+using namespace std;
+
+vector<bool> Sieve(int N){
+    
+    vector<bool> sieve(N+1,true);
+    sieve[0]=sieve[1]=false;
+
+    for(int i=2; i*i<=N ; i++){ 
+        if(sieve[i]){
+                for(int j=i*i; j<=N; j+=i){ 
+                sieve[j]=false;
+            }
+        }
+    }
+    
+    return sieve;
+}
+
+int main(){
+    int N = 25;
+    vector<bool> sieve = Sieve(N);
+    for(int i=0;i<=N;i++){
+        if(sieve[i]){
+            cout<<i<<" ";
+        }
+    }
+    return 0;
+}
