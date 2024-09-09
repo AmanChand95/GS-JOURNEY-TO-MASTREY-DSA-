@@ -1,0 +1,25 @@
+#include<iostream>
+using namespace std;
+
+void solve(int* &p){
+    p = p + 1;
+}
+
+int main(){
+    int a = 5;
+    int *p = &a;
+
+    cout << "BEFORE SOLVE FUNCTION" << endl;
+    cout << "p: " << p << endl;
+    cout << "&p: " << &p << endl;
+    cout << "*p: " << *p << endl;
+
+    solve(p);
+
+    cout << "AFTER SOLVE FUNCTION" << endl;
+    cout << "p: " << p << endl;
+    cout << "&p: " << &p << endl;
+    cout << "*p: " << *p << endl;
+
+    return 0;
+}
