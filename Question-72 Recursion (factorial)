@@ -1,0 +1,19 @@
+#include<iostream>
+using namespace std;
+
+int factorial(int N){
+    if(N == 1 || N == 0){
+        return 1;
+    }
+
+    int recursionKaAns = factorial(N-1);
+    int finalAns = N * recursionKaAns;
+    return finalAns;
+}
+int main(){
+    int N = 4;
+    int factorialAns = factorial(N);
+    cout<<"Factorial is "<<factorialAns<<endl;
+
+    return 0;
+}
