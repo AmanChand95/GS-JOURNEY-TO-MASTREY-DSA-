@@ -1,0 +1,51 @@
+#include <iostream>
+using namespace std;
+
+namespace ListTraversal {
+    class Node {
+    public:
+        int data;
+        Node* next;
+
+        Node(int data) {
+            this->data = data;
+            this->next = NULL;
+        }
+    };
+
+    int getLength(Node* head) {
+        Node* temp = head;
+        int count = 0;
+
+        while (temp != NULL) {
+            count++;
+            temp = temp->next;
+        }
+        return count;
+    }
+
+    void traverse(Node* head) {
+        Node* temp = head;
+        while (temp != NULL) {
+            cout << temp->data << " ";
+            temp = temp->next;
+        }
+        cout << endl;
+    }
+}
+
+int main() {
+    using namespace ListTraversal;
+
+    Node* head = new Node(10);
+    Node* second = new Node(20);
+    Node* third = new Node(30);
+
+    head->next = second;
+    second->next = third;
+
+    traverse(head);
+    cout << "Length of the list: " << getLength(head) << endl;
+
+    return 0;
+}
