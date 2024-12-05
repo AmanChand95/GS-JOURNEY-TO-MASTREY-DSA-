@@ -1,0 +1,145 @@
+#include <iostream>
+using namespace std;
+
+class Node {
+public:
+    int data;
+    Node* prev;
+    Node* next;
+
+    Node() {
+        this->prev = NULL;
+        this->next = NULL;
+    }
+
+    Node(int data) {
+        this->data = data;
+        this->prev = NULL;
+        this->next = NULL;
+    }
+};
+
+void printDLL(Node* head);
+int findLength(Node* head);
+void insertAtTail(Node*& head, Node*& tail, int data);
+void deleteFromHead(Node*& head, Node*& tail);
+void deleteFromTail(Node*& head, Node*& tail);
+void deleteFromPosition(Node*& head, Node*& tail, int position);
+
+void printDLL(Node* head) {
+    Node* temp = head;
+    while (temp != NULL) {
+        cout << temp->data << " -> ";
+        temp = temp->next;
+    }
+    cout << "NULL" << endl;
+}
+
+int findLength(Node* head) {
+    Node* temp = head;
+    int count = 0;
+    while (temp != NULL) {
+        count++;
+        temp = temp->next;
+    }
+    return count;
+}
+
+void insertAtTail(Node*& head, Node*& tail, int data) {
+    if (head == NULL) {
+        Node* newNode = new Node(data);
+        head = newNode;
+        tail = newNode;
+    } else {
+        Node* newNode = new Node(data);
+        tail->next = newNode;
+        newNode->prev = tail;
+        tail = newNode;
+    }
+}
+
+void deleteFromHead(Node*& head, Node*& tail) {
+    if (head == NULL) {
+        cout << "Can't delete, list is empty." << endl;
+        return;
+    }
+    if (head == tail) {
+        delete head;
+        head = NULL;
+        tail = NULL;
+        return;
+    }
+
+    Node* temp = head;
+    head = head->next;
+    head->prev = NULL;
+    delete temp;
+}
+
+void deleteFromTail(Node*& head, Node*& tail) {
+    if (head == NULL) {
+        cout << "Can't delete, list is empty." << endl; // Corrected semicolon
+        return;
+    }
+    if (head == tail) {
+        delete head;
+        head = NULL;
+        tail = NULL;
+        return;
+    }
+
+    Node* temp = tail;
+    tail = tail->prev;
+    tail->next = NULL;
+    delete temp;
+}
+
+void deleteFromPosition(Node*& head, Node*& tail, int position) {
+    if (head == NULL) {
+        cout << "Can't delete, list is empty." << endl;
+        return;
+    }
+    if (position == 1) {
+        deleteFromHead(head, tail);
+    } else if (position == findLength(head)) {
+        deleteFromTail(head, tail);
+    } else {
+        Node* currNode = head;
+        for (int i = 1; i < position; i++) {
+            currNode = currNode->next;
+        }
+        Node* prevNode = currNode->prev;
+        Node* nextNode = currNode->next;
+
+        prevNode->next = nextNode;
+        nextNode->prev = prevNode;
+
+        delete currNode;
+    }
+}
+
+int main() {
+    Node* head = NULL;
+    Node* tail = NULL;
+
+    // Insert sample data
+    head = new Node(10);
+    tail = head;
+    insertAtTail(head, tail, 20);
+    insertAtTail(head, tail, 30);
+    insertAtTail(head, tail, 40);
+
+    printDLL(head);
+
+    // Perform deletions
+    deleteFromHead(head, tail);
+    printDLL(head);
+
+    deleteFromTail(head, tail);
+    printDLL(head);
+
+    deleteFromPosition(head, tail, 2);
+    printDLL(head);
+
+    return 0;
+}
