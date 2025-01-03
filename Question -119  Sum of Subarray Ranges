@@ -1,0 +1,16 @@
+class Solution {
+public:
+    long long subArrayRanges(vector<int>& nums) {
+        long long ans = 0;
+        for(int start = 0; start < nums.size(); start++) {
+            int minVal = INT_MAX;
+            int maxVal = INT_MIN;
+            for(int end = start; end < nums.size(); end++) {
+                minVal = min(minVal, nums[end]);
+                maxVal = max(maxVal, nums[end]);
+                ans += (maxVal - minVal);
+            }
+        }
+        return ans;
+    }
+};
