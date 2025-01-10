@@ -1,0 +1,17 @@
+class Solution {
+public:
+    int canCompleteCircuit(vector<int>& gas, vector<int>& cost) {
+        int deficit = 0, balance = 0, start = 0;
+
+        for (int index = 0; index < gas.size(); index++) {
+            balance += gas[index] - cost[index];
+            if (balance < 0) {
+                deficit += abs(balance);
+                start = index + 1;
+                balance = 0;
+            }
+        }
+
+        return (balance - deficit >= 0) ? start : -1;
+    }
+};
